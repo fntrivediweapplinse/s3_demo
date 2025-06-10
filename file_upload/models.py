@@ -15,14 +15,11 @@ class UploadedFile(models.Model):
 
     def get_file_contents(self):
         """Retrieve file contents from S3"""
-        s3_client = boto3.client('s3')
         try:
-            response = s3_client.get_object(
-                Bucket=settings.AWS_STORAGE_BUCKET_NAME,
-                Key=self.file.name
-            )
-            return response['Body'].read()
+            # Get the file directly from the storage backend
+            return self.file.read()
         except Exception as e:
+            print(f"Error reading file: {e}")
             return None
 
     def get_file_url(self):

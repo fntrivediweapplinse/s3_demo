@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-o*+n%0)493&5auyyf-kms94=7^q)g#8f*9dfl_5ul6q*a(th5=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,11 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storages',
     'file_upload',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -149,3 +151,19 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # Media files configuration
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
 MEDIA_ROOT = ''
+
+# Add CORS settings
+CORS_ALLOWED_ORIGINS = [
+    "https://doll-mixing-mess-oo.trycloudflare.com",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+# Add CSRF trusted origins
+CSRF_TRUSTED_ORIGINS = [
+    "https://doll-mixing-mess-oo.trycloudflare.com",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]

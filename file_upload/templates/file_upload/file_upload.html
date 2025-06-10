@@ -3,27 +3,73 @@
 <head>
     <title>Upload File</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        .upload-form { max-width: 500px; }
-        .form-group { margin: 15px 0; }
-        label { display: block; margin-bottom: 5px; }
-        input[type="file"] { width: 100%; padding: 8px; }
-        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
-        .back-link { display: inline-block; margin-top: 20px; }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .upload-form { 
+            margin-top: 20px;
+        }
+        .form-group { 
+            margin: 15px 0;
+        }
+        label { 
+            display: block; 
+            margin-bottom: 8px;
+            color: #333;
+        }
+        input[type="file"] { 
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+        button { 
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .back-link { 
+            display: inline-block;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: #007bff;
+        }
     </style>
 </head>
 <body>
-    <h1>Upload File</h1>
-    
-    <form method="post" enctype="multipart/form-data" class="upload-form">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="id_file">Select File:</label>
-            {{ form.file }}
-        </div>
-        <button type="submit">Upload</button>
-    </form>
-    
-    <a href="{% url 'file-list' %}" class="back-link">Back to File List</a>
+    <div class="container">
+        <h1>Upload File</h1>
+        
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_file">Select File:</label>
+                {{ form.file }}
+            </div>
+            <button type="submit">Upload</button>
+        </form>
+        
+        <a href="{% url 'file-list' %}" class="back-link">← Back to File List</a>
+    </div>
 </body>
 </html> 
